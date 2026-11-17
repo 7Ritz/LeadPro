@@ -1,4 +1,4 @@
-# Project Title
+# LeadPro
 
 LeadPro is a lead processing system that compiles messy database values into a custom lightweight Obsidian CRM.
 
