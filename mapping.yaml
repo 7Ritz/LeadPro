@@ -1,0 +1,91 @@
+# ============================================================
+# MAPPING.YAML - CSV Column to Dataview Property Mapping
+# ============================================================
+# This file controls how CSV columns are turned into Obsidian notes.
+# It handles both filename generation and Dataview YAML properties.
+
+# ------------------------------------------------------------
+# FILENAME SETTINGS
+# ------------------------------------------------------------
+# Controls how each note is named.
+# Use {column_name} placeholders to insert values from your CSV.
+filename:
+  template: "Lead - {name}.md"
+  folder: "3 - Templates/Lead Template"
+
+  # Guidance:
+  # - Keep the template simple and consistent.
+  # - You can combine multiple fields, e.g. "{company} - {name}.md"
+  # - Avoid characters that are invalid in filenames (/, \, :, *, etc.)
+
+# ------------------------------------------------------------
+# DATAVIEW PROPERTY MAPPINGS
+# ------------------------------------------------------------
+# Maps CSV column headers to clean Dataview property names.
+# These will appear in the YAML frontmatter of each note.
+
+properties:
+  # Core contact fields
+  Category: type
+  Phone: phone
+  Email: email
+  Website: website
+  Address: address
+  City: city
+  Postcode: postal_code
+  Domain: domain
+
+  # Enriched / nested data fields
+  Service Provider: phone.phones_enricher.carrier_name
+  Mailbox Validity: email.emails_validator.status
+  Validator Details: email.emails_validator.status_details
+
+  # Company information
+  Company Phone: company_phone
+  LinkedIn: company_linkedin
+  Facebook: company_facebook
+  Instagram: company_instagram
+  Twitter: company_x
+  Youtube: company_youtube
+
+  # Website analysis
+  Website Generator: website_generator
+  Website Has GTM?: website_has_gtm
+
+  # Other
+  Reviews: reviews_link
+
+# ------------------------------------------------------------
+# TEMPLATE GUIDANCE (for future use)
+# ------------------------------------------------------------
+# Notes for setting up your note templates:
+#
+# 1. Filename Template:
+#    - Currently set to "Lead - {name}.md"
+#    - Change the prefix if you want different note types
+#      (e.g. "Contact - {name}.md" or "{company} - {name}.md")
+#
+# 2. YAML Properties:
+#    - All fields above will be written into the frontmatter.
+#    - Property names on the left are what will appear in Dataview.
+#    - Keep them consistent (use Title Case or camelCase).
+#
+# 3. Template Body:
+#    - You can create a separate template file that includes
+#      these properties in a standard layout.
+#    - Example sections you might want:
+#        ## Notes
+#        ## Company Info
+#        ## Social Links
+#
+# 4. Future Expansion:
+#    - Add new columns to this file as needed.
+#    - You can also add a "body_sections" section later if you
+#      want to map certain columns into the note body instead of YAML.
+
+# ------------------------------------------------------------
+# USAGE NOTES
+# ------------------------------------------------------------
+# - Only columns listed here will be processed.
+# - If a CSV row is missing a value, the property will be left blank.
+# - Update this file whenever your CSV structure changes.
